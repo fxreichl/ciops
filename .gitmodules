@@ -1,0 +1,3 @@
+[submodule "aiger_io/aiger"]
+	path = aiger_io/aiger
+	url = https://github.com/arminbiere/aiger
