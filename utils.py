@@ -9,7 +9,7 @@ ScriptDir = os.path.dirname(os.path.realpath(__file__))
 miniQU_path = f"{ScriptDir}/QBF-Solver/miniQU"
 quabs_path  = f"{ScriptDir}/QBF-Solver/quabs"
 qfun_path   = f"{ScriptDir}/QBF-Solver/qfun"
-abc_path = ""
+abc_path    = ""
 ####################################################################
 
 class TimeoutException(Exception):
@@ -254,3 +254,7 @@ def mean(vals) :
   assert len(vals) > 0
   return sum(vals) / len(vals)
  
+def getAllIndices(lst, val) :
+  for idx, x in enumerate(lst) :
+    if x == val :
+      yield idx 

@@ -7,6 +7,7 @@ import bitarray.util
 
 from utils import isNormalised
 from utils import getBitSeq
+from utils import getAllIndices
 
 class Gate :
   
@@ -323,9 +324,10 @@ class Specification :
           substitution[x] = None
       self.removeGate(alias)
       if self.isPO(alias) :
-        out_idx = self.pos.index(alias)
-        constant_alias = self.getConstantAlias(alias)
-        self.pos[out_idx] = constant_alias
+        for out_idx in getAllIndices(self.pos, alias) :
+          self.pos[out_idx] =  self.getConstantAlias(alias)
+          self.pos_set = set(self.pos)
+
       
 
   # For large circuits the recursive dfs search seems to be potentially problematic under Python.
@@ -438,12 +440,12 @@ class Specification :
             
           
   def negateOutput(self, alias) :
-    index = self.pos.index(alias)
-    self.negated_pos[index] = 1
+    for i in getAllIndices(self.pos, alias) :
+      self.negated_pos[i] = 1
   
   def toggleOutputNegation(self, alias) :
-    index = self.pos.index(alias)
-    self.negated_pos[index] = 1 - self.negated_pos[index]
+    for i in getAllIndices(self.pos, alias) :
+      self.negated_pos[i] = 1 - self.negated_pos[i]
 
 
   def getOutputsToNegate(self) :
