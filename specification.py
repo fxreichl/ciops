@@ -318,7 +318,7 @@ class Specification :
       alias = constant_gates.pop()
       for x in self.getGateOutputs(alias) :
         gate = self.getGate(x)
-        gate.substitute(constant_gates)
+        gate.substitute(substitution)
         if gate.isConstant() :
           constant_gates.add(x)
           substitution[x] = None
