@@ -159,7 +159,7 @@ class BlifParser :
 
   def addGate(self, spec_builder, alias, inputs, gate_lines, output_value) :
     assert not output_value is None or len(gate_lines) == 0 , "If there are gate lines there must be an output value"
-    default_output_value = 1
+    default_output_value = 0
     if output_value is None :
       val = default_output_value
     else :
